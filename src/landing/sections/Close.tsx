@@ -362,7 +362,7 @@ function Footer() {
 
         <div
           data-reveal
-          className="mt-14 flex flex-col items-center gap-3 border-t border-line pt-8 text-[12px] text-ink-4 sm:flex-row sm:justify-between"
+          className="mt-14 flex flex-col items-center gap-3 border-t border-line pt-8 text-[12px] text-ink-3 sm:flex-row sm:justify-between"
         >
           <span>PrivacyGlass PG-1 · Final-year project · Academic prototype</span>
           <span className="readout">Chandausi, UP · 2026</span>

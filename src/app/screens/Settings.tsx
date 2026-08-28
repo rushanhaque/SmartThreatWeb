@@ -251,7 +251,7 @@ export default function Settings() {
         </Panel>
       </section>
 
-      <p className="mt-6 px-6 text-center text-[11.5px] leading-relaxed text-ink-4">
+      <p className="mt-6 px-6 text-center text-[11.5px] leading-relaxed text-ink-3">
         PG-1 is a detection aid built as a final-year engineering project. It does not guarantee
         that a space is free of surveillance.
       </p>

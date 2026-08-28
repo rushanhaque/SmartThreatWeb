@@ -41,7 +41,7 @@ function Header() {
         <button
           onClick={() => navigate('/')}
           aria-label="PrivacyGlass home"
-          className="press shrink-0 text-ink-2"
+          className="press -ml-1.5 grid h-10 w-10 shrink-0 place-items-center rounded-sm text-ink-2"
         >
           <Logomark size={22} active />
         </button>
@@ -123,7 +123,7 @@ function Tab({ to, icon, label, end }: { to: string; icon: IconName; label: stri
       className={({ isActive }) =>
         cx(
           'press relative flex h-full flex-col items-center justify-center gap-1',
-          isActive ? 'text-ink' : 'text-ink-4',
+          isActive ? 'text-ink' : 'text-ink-3',
         )
       }
     >
@@ -140,7 +140,7 @@ function Tab({ to, icon, label, end }: { to: string; icon: IconName; label: stri
             />
           )}
           <Icon name={icon} size={20} strokeWidth={isActive ? 1.9 : 1.6} />
-          <span className="text-[9.5px] font-medium tracking-[0.04em]">{label}</span>
+          <span className="text-[10px] font-medium tracking-[0.03em]">{label}</span>
         </>
       )}
     </NavLink>

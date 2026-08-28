@@ -198,7 +198,7 @@ export default function Incident() {
           <Button icon="share">Share bundle</Button>
           <Button icon="flag">Report to venue</Button>
         </div>
-        <p className="pt-1 text-center text-[11.5px] leading-relaxed text-ink-4">
+        <p className="pt-1 text-center text-[11.5px] leading-relaxed text-ink-3">
           The bundle contains raw sensor logs, the device census, and a SHA-256 of both, so a third
           party can verify nothing was edited after the fact.
         </p>

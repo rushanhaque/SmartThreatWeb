@@ -196,7 +196,7 @@ export default function Signals() {
         </Panel>
       </section>
 
-      <p className="mt-5 px-6 text-center text-[11.5px] text-ink-4">
+      <p className="mt-5 px-6 text-center text-[11.5px] text-ink-3">
         Last fusion pass at {clockTime(verdict.at)} · score {verdict.score}
       </p>
     </div>

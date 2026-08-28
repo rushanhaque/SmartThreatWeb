@@ -17,6 +17,31 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+if (import.meta.env.DEV) {
+  // Debug handle so scroll choreography can be inspected without a devtools
+  // breakpoint. Stripped from production builds by the bundler.
+  ;(window as unknown as Record<string, unknown>).__gsap = gsap
+  ;(window as unknown as Record<string, unknown>).__ST = ScrollTrigger
+}
+
+/* Two settings that only matter on a real phone, and matter a lot there.
+
+   ignoreMobileResize: iOS and Android hide the URL bar as you scroll down and
+   show it again as you scroll up. That resizes the viewport mid-scroll, which
+   without this flag makes ScrollTrigger recalculate and visibly jolt every
+   pinned section.
+
+   fonts.ready: Instrument Sans and JetBrains Mono load asynchronously. Trigger
+   positions computed against the fallback metrics are wrong the moment the
+   real faces swap in, so every reveal fires at the wrong scroll offset. One
+   refresh after the swap fixes the whole page. */
+if (typeof window !== 'undefined') {
+  ScrollTrigger.config({ ignoreMobileResize: true })
+  if ('fonts' in document) {
+    document.fonts.ready.then(() => ScrollTrigger.refresh())
+  }
+}
+
 export const EASE = 'expo.out'
 export const EASE_SOFT = 'power3.out'
 

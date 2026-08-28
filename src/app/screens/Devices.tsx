@@ -255,7 +255,7 @@ export function DeviceCard({ device: d, onClick }: { device: Device; onClick?: (
           </div>
           <div className="readout mt-0.5 flex items-center gap-1.5 text-[11.5px]">
             <span className={notable ? 'text-[var(--accent)]' : 'text-ink-3'}>{oui}</span>
-            <span className="text-ink-4">{rest}</span>
+            <span className="text-ink-3">{rest}</span>
           </div>
         </div>
 

@@ -290,7 +290,7 @@ function Baseline() {
         ))}
       </div>
 
-      <p className="pt-3 text-[12px] leading-relaxed text-ink-4">
+      <p className="pt-3 text-[12px] leading-relaxed text-ink-3">
         Trusted radios are excluded from scoring. You can untrust any of them later, and the
         baseline can be recaptured whenever you move house.
       </p>
@@ -351,7 +351,7 @@ function Alerts() {
         ))}
       </div>
 
-      <p className="mt-auto pt-6 text-[11.5px] leading-relaxed text-ink-4">
+      <p className="mt-auto pt-6 text-[11.5px] leading-relaxed text-ink-3">
         PG-1 is an aid, not a guarantee. It cannot see a camera that records to an SD card and
         never transmits — use the lens finder for those.
       </p>

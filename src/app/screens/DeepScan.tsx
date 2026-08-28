@@ -341,7 +341,7 @@ export default function DeepScan() {
           </div>
           <ul className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3.5 py-2">
             {findings.length === 0 && (
-              <li className="py-6 text-center text-[12.5px] text-ink-4">
+              <li className="py-6 text-center text-[12.5px] text-ink-3">
                 {phase === 'idle' ? 'Press start when you are inside the room.' : 'Listening…'}
               </li>
             )}
@@ -384,7 +384,7 @@ export default function DeepScan() {
             <Button full size="lg" variant="accent" icon="scan" onClick={start}>
               Start 90-second sweep
             </Button>
-            <p className="text-center text-[11.5px] leading-relaxed text-ink-4">
+            <p className="text-center text-[11.5px] leading-relaxed text-ink-3">
               Stand near the centre of the room and turn slowly once. Passive only — nothing is
               transmitted, nothing leaves the device.
             </p>

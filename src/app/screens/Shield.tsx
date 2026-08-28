@@ -247,7 +247,7 @@ export function Shield() {
         </div>
       </section>
 
-      <p className="mt-6 px-6 text-center text-[11.5px] leading-relaxed text-ink-4">
+      <p className="mt-6 px-6 text-center text-[11.5px] leading-relaxed text-ink-3">
         PG-1 is an aid, not a guarantee. If you believe you are being recorded or followed,
         preserve the scene and contact the police.
       </p>

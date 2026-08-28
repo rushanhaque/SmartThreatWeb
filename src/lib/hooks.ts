@@ -23,9 +23,18 @@ export function useSmoothScroll(enabled = true) {
     const raf = (time: number) => lenis.raf(time * 1000)
     gsapTicker(raf)
 
+    // Exposed in dev only, so scroll choreography can be driven from the
+    // console (or an automated pass) without faking untrusted wheel events.
+    if (import.meta.env.DEV) {
+      ;(window as unknown as { __lenis?: Lenis }).__lenis = lenis
+    }
+
     return () => {
       removeGsapTicker(raf)
       lenis.destroy()
+      if (import.meta.env.DEV) {
+        delete (window as unknown as { __lenis?: Lenis }).__lenis
+      }
     }
   }, [enabled])
 }

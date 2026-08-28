@@ -206,7 +206,7 @@ export default function DeviceDetail() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-2.5 text-[11.5px] leading-relaxed text-ink-4">
+                <p className="mt-2.5 text-[11.5px] leading-relaxed text-ink-3">
                   Port checks run from your phone, never the glasses, and only on networks you
                   have joined. Passive mode disables them entirely.
                 </p>

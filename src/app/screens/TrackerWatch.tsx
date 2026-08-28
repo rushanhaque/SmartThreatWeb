@@ -128,7 +128,7 @@ export default function TrackerWatch() {
         >
           This one is mine
         </Button>
-        <p className="px-1 text-center text-[11.5px] text-ink-4">
+        <p className="px-1 text-center text-[11.5px] text-ink-3">
           Adds it to your trusted list. You can undo this from the device page at any time.
         </p>
       </section>
