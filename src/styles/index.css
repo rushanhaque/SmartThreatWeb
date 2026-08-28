@@ -1,0 +1,523 @@
+@import 'tailwindcss';
+
+/* ============================================================================
+   PRIVACYGLASS · DESIGN SYSTEM "APERTURE"
+   A precision-instrument language for a privacy defence wearable.
+   Dark-only by intent: the product is used in dim rooms, at night, discreetly.
+   ========================================================================== */
+
+@theme {
+  /* — Surfaces ————————————————————————————————————————————————— */
+  --color-void: #06070a;
+  --color-bg: #08090b;
+  --color-bg-2: #0b0d10;
+  --color-surface: #101317;
+  --color-surface-2: #161a20;
+  --color-surface-3: #1d222a;
+
+  /* — Ink ————————————————————————————————————————————————————— */
+  --color-ink: #e9ebee;
+  --color-ink-2: #99a1ac;
+  --color-ink-3: #626a76;
+  --color-ink-4: #3d444e;
+
+  /* — Status: the product's semantic core ————————————————————— */
+  --color-safe: #35c98a;
+  --color-safe-deep: #0f3d2c;
+  --color-caution: #e9a23b;
+  --color-caution-deep: #43310f;
+  --color-threat: #ff5247;
+  --color-threat-deep: #4a1512;
+
+  /* — Brand: lens-coating iridescence ————————————————————————— */
+  --color-iris-a: #6e63ff;
+  --color-iris-b: #2fa8ff;
+  --color-iris-c: #2be0c4;
+
+  /* — Lines ——————————————————————————————————————————————————— */
+  --color-line: rgba(255, 255, 255, 0.075);
+  --color-line-2: rgba(255, 255, 255, 0.13);
+  --color-line-3: rgba(255, 255, 255, 0.22);
+
+  /* — Type ———————————————————————————————————————————————————— */
+  --font-sans:
+    'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* — Radii ——————————————————————————————————————————————————— */
+  --radius-xs: 6px;
+  --radius-sm: 9px;
+  --radius-md: 13px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* — Motion —————————————————————————————————————————————————— */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* — Breakpoints ————————————————————————————————————————————— */
+  --breakpoint-xs: 24rem;
+
+  /* — Layout —————————————————————————————————————————————————— */
+  --spacing-safe-b: env(safe-area-inset-bottom, 0px);
+  --spacing-safe-t: env(safe-area-inset-top, 0px);
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================== */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    background: var(--color-void);
+    -webkit-text-size-adjust: 100%;
+    scrollbar-color: var(--color-surface-3) transparent;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    letter-spacing: -0.011em;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-iris-b) 32%, transparent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-iris-b);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-3);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* ============================================================================
+   TYPOGRAPHY UTILITIES
+   ========================================================================== */
+
+@utility display-1 {
+  font-size: clamp(2.75rem, 13vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+}
+
+@utility display-2 {
+  font-size: clamp(2rem, 8.5vw, 3.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.042em;
+  font-weight: 600;
+}
+
+@utility display-3 {
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+/* Micro label — the instrument's voice. Used everywhere for field names. */
+@utility micro {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+@utility readout {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  font-feature-settings: 'zero' 1;
+}
+
+@utility mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================================
+   SIGNATURE SURFACES
+   ========================================================================== */
+
+/* Base instrument panel */
+@utility panel {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-surface) 92%, white 8%) 0%,
+    var(--color-surface) 42%,
+    var(--color-bg-2) 100%
+  );
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+/* Hairline top-highlight — reads as machined metal catching light */
+@utility panel-lit {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.14) 22%,
+      rgba(255, 255, 255, 0.14) 78%,
+      transparent
+    );
+    pointer-events: none;
+  }
+}
+
+/* Iridescent hairline — the lens-coating motif. Used sparingly. */
+@utility iris-edge {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      118deg,
+      var(--color-iris-a),
+      var(--color-iris-b) 42%,
+      var(--color-iris-c) 78%,
+      transparent
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* Rangefinder corner brackets — viewfinder framing on key readouts */
+@utility bracketed {
+  position: relative;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-color: var(--color-line-3);
+    border-style: solid;
+    pointer-events: none;
+  }
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+    border-top-left-radius: 3px;
+  }
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
+    border-bottom-right-radius: 3px;
+  }
+}
+
+/* Fine engineering grid, sits behind hero content */
+@utility grid-field {
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+/* ============================================================================
+   STATUS THEMING — one class flips an entire subtree's accent
+   ========================================================================== */
+
+.t-safe {
+  --accent: var(--color-safe);
+  --accent-deep: var(--color-safe-deep);
+  --accent-soft: color-mix(in srgb, var(--color-safe) 14%, transparent);
+}
+.t-caution {
+  --accent: var(--color-caution);
+  --accent-deep: var(--color-caution-deep);
+  --accent-soft: color-mix(in srgb, var(--color-caution) 15%, transparent);
+}
+.t-threat {
+  --accent: var(--color-threat);
+  --accent-deep: var(--color-threat-deep);
+  --accent-soft: color-mix(in srgb, var(--color-threat) 16%, transparent);
+}
+.t-neutral {
+  --accent: var(--color-iris-b);
+  --accent-deep: #0d2740;
+  --accent-soft: color-mix(in srgb, var(--color-iris-b) 14%, transparent);
+}
+
+/* ============================================================================
+   FILM GRAIN — 2.5% static noise. Adds depth, costs nothing (single paint).
+   ========================================================================== */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.032;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================================
+   MOTION PRIMITIVES
+   ========================================================================== */
+
+@keyframes aperture-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.045);
+  }
+}
+
+@keyframes sweep-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blip {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  18% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@keyframes ticker {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer-x {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(220%);
+  }
+}
+
+.anim-rise {
+  animation: rise-in 0.52s var(--ease-out-expo) both;
+}
+
+.live-dot {
+  animation: ticker 2.1s ease-in-out infinite;
+}
+
+/* Staggered entrance for lists — no JS needed, GPU-only properties */
+.stagger > * {
+  animation: rise-in 0.5s var(--ease-out-expo) both;
+}
+.stagger > *:nth-child(1) {
+  animation-delay: 0.02s;
+}
+.stagger > *:nth-child(2) {
+  animation-delay: 0.06s;
+}
+.stagger > *:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.stagger > *:nth-child(4) {
+  animation-delay: 0.14s;
+}
+.stagger > *:nth-child(5) {
+  animation-delay: 0.18s;
+}
+.stagger > *:nth-child(6) {
+  animation-delay: 0.22s;
+}
+.stagger > *:nth-child(7) {
+  animation-delay: 0.26s;
+}
+.stagger > *:nth-child(8) {
+  animation-delay: 0.3s;
+}
+.stagger > *:nth-child(n + 9) {
+  animation-delay: 0.34s;
+}
+
+/* ============================================================================
+   INTERACTION
+   ========================================================================== */
+
+.press {
+  transition:
+    transform 0.16s var(--ease-out-quart),
+    background-color 0.2s,
+    border-color 0.2s,
+    opacity 0.2s;
+}
+.press:active {
+  transform: scale(0.972);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Horizontal rails snap on touch */
+.rail {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+.rail > * {
+  scroll-snap-align: start;
+  flex: none;
+}
+
+/* Long lists: skip offscreen paint work */
+.list-virtualish > * {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 72px;
+}
+
+/* ============================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .grain {
+    display: none;
+  }
+}
+
+/* Screen-reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
