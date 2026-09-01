@@ -111,19 +111,19 @@ export const PG1Glasses = memo(function PG1Glasses({
     >
       <defs>
         <linearGradient id="pg-lens" x1="0" y1="0" x2="0.4" y2="1">
-          <stop offset="0%" stopColor="#2b3440" stopOpacity="0.95" />
-          <stop offset="45%" stopColor="#131a22" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#0a0e13" stopOpacity="0.95" />
+          <stop offset="0%" stopColor="#1d2530" stopOpacity="0.97" />
+          <stop offset="45%" stopColor="#0e141c" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#060a0f" stopOpacity="0.97" />
         </linearGradient>
         <linearGradient id="pg-coat" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="var(--color-iris-a)" stopOpacity="0.55" />
-          <stop offset="48%" stopColor="var(--color-iris-b)" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="var(--color-iris-c)" stopOpacity="0.5" />
+          <stop offset="0%" stopColor="var(--color-iris-a)" stopOpacity="0.6" />
+          <stop offset="48%" stopColor="var(--color-iris-b)" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="var(--color-iris-c)" stopOpacity="0.6" />
         </linearGradient>
         <linearGradient id="pg-frame" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#5a6472" />
-          <stop offset="40%" stopColor="#2c333d" />
-          <stop offset="100%" stopColor="#171c23" />
+          <stop offset="0%" stopColor="#9C8E7A" />
+          <stop offset="40%" stopColor="#4A4036" />
+          <stop offset="100%" stopColor="#2A2219" />
         </linearGradient>
         <linearGradient id="pg-sweep" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="var(--color-iris-c)" stopOpacity="0" />
@@ -147,7 +147,7 @@ export const PG1Glasses = memo(function PG1Glasses({
           width="181"
           height="41"
           rx="14.5"
-          stroke="rgba(255,255,255,0.14)"
+          stroke="rgba(255,255,255,0.28)"
         />
         <rect x="800" y="128" width="182" height="42" rx="15" fill="url(#pg-frame)" />
         <rect
@@ -156,17 +156,17 @@ export const PG1Glasses = memo(function PG1Glasses({
           width="181"
           height="41"
           rx="14.5"
-          stroke="rgba(255,255,255,0.14)"
+          stroke="rgba(255,255,255,0.28)"
         />
       </g>
 
       {/* ── Component blocks inside the temples ─────────────────── */}
       <g opacity="0.92">
-        <rect x="806" y="140" width="46" height="18" rx="3" fill="#0d1116" stroke="rgba(255,255,255,0.2)" />
-        <rect x="884" y="140" width="34" height="18" rx="3" fill="#0d1116" stroke="rgba(255,255,255,0.2)" />
-        <rect x="932" y="140" width="42" height="18" rx="3" fill="#0d1116" stroke="rgba(255,255,255,0.12)" />
-        <rect x="96" y="140" width="46" height="18" rx="3" fill="#0d1116" stroke="rgba(255,255,255,0.2)" />
-        <rect x="40" y="140" width="44" height="18" rx="3" fill="#0d1116" stroke="rgba(255,255,255,0.2)" />
+        <rect x="806" y="140" width="46" height="18" rx="3" fill="var(--color-bg-2)" stroke="var(--color-line-2)" />
+        <rect x="884" y="140" width="34" height="18" rx="3" fill="var(--color-bg-2)" stroke="var(--color-line-2)" />
+        <rect x="932" y="140" width="42" height="18" rx="3" fill="var(--color-bg-2)" stroke="var(--color-line)" />
+        <rect x="96" y="140" width="46" height="18" rx="3" fill="var(--color-bg-2)" stroke="var(--color-line-2)" />
+        <rect x="40" y="140" width="44" height="18" rx="3" fill="var(--color-bg-2)" stroke="var(--color-line-2)" />
       </g>
 
       {/* ── Frame front ─────────────────────────────────────────── */}
@@ -176,7 +176,7 @@ export const PG1Glasses = memo(function PG1Glasses({
         <path d="M432 122h136" stroke="url(#pg-frame)" strokeWidth="26" strokeLinecap="round" />
         <path
           d="M436 118c22-14 106-14 128 0"
-          stroke="rgba(255,255,255,0.16)"
+          stroke="rgba(255,255,255,0.28)"
           strokeWidth="1.5"
           fill="none"
         />
@@ -199,7 +199,7 @@ export const PG1Glasses = memo(function PG1Glasses({
           width="227"
           height="111"
           rx="41.5"
-          stroke="rgba(255,255,255,0.2)"
+          stroke="rgba(255,255,255,0.30)"
         />
         <rect
           x="576.5"
@@ -207,24 +207,24 @@ export const PG1Glasses = memo(function PG1Glasses({
           width="227"
           height="111"
           rx="41.5"
-          stroke="rgba(255,255,255,0.2)"
+          stroke="rgba(255,255,255,0.30)"
         />
       </g>
 
       {/* ── HUD element inside the right lens ───────────────────── */}
       <g clipPath="url(#pg-clip-r)">
-        <rect x="616" y="160" width="52" height="22" rx="4" fill="#00110c" stroke="var(--color-safe)" strokeOpacity="0.5" />
+        <rect x="616" y="160" width="52" height="22" rx="4" fill="rgba(8,40,22,0.9)" stroke="var(--color-safe)" strokeOpacity="0.5" />
         <circle cx="628" cy="171" r="3.4" fill="var(--color-safe)" />
         <rect x="638" y="167.5" width="20" height="2.4" rx="1.2" fill="var(--color-safe)" opacity="0.75" />
         <rect x="638" y="173" width="12" height="2.4" rx="1.2" fill="var(--color-safe)" opacity="0.4" />
       </g>
 
       {/* ── Sensors on the bridge and rims ──────────────────────── */}
-      <circle cx="500" cy="118" r="5.5" fill="#0b0f14" stroke="rgba(255,255,255,0.35)" />
+      <circle cx="500" cy="118" r="5.5" fill="#141C25" stroke="rgba(255,255,255,0.55)" />
       <circle cx="500" cy="118" r="2" fill="var(--color-iris-b)" opacity="0.8" />
       <g>
-        <circle cx="292" cy="196" r="4.2" fill="#12060a" stroke="var(--color-threat)" strokeOpacity="0.55" />
-        <circle cx="308" cy="196" r="4.2" fill="#12060a" stroke="var(--color-threat)" strokeOpacity="0.55" />
+        <circle cx="292" cy="196" r="4.2" fill="rgba(40,8,10,0.9)" stroke="var(--color-threat)" strokeOpacity="0.55" />
+        <circle cx="308" cy="196" r="4.2" fill="rgba(40,8,10,0.9)" stroke="var(--color-threat)" strokeOpacity="0.55" />
       </g>
 
       {/* ── Live scan sweep across the lenses ───────────────────── */}

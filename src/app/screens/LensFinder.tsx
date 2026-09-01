@@ -96,7 +96,7 @@ export default function LensFinder() {
 
       {/* ── Viewfinder ───────────────────────────────────────────── */}
       <div className="relative min-h-0 flex-1 overflow-hidden">
-        <div className="absolute inset-3 overflow-hidden rounded-lg border border-line-2 bg-[#05070a]">
+        <div className="absolute inset-3 overflow-hidden rounded-lg border border-line-2 bg-[#0a0f15]">
           {useCamera ? (
             <video
               ref={videoRef}
@@ -246,8 +246,8 @@ function SimulatedRoom({ ir }: { ir: boolean }) {
     <svg viewBox="0 0 100 140" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
       <defs>
         <linearGradient id="lf-wall" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0d1116" />
-          <stop offset="100%" stopColor="#06080b" />
+          <stop offset="0%" stopColor="#0e1620" />
+          <stop offset="100%" stopColor="#06090e" />
         </linearGradient>
         <radialGradient id="lf-glint">
           <stop offset="0%" stopColor="#fff" stopOpacity="1" />
@@ -259,7 +259,7 @@ function SimulatedRoom({ ir }: { ir: boolean }) {
       <rect width="100" height="140" fill="url(#lf-wall)" />
 
       {/* room furniture, drawn as flat IR-dark silhouettes */}
-      <g stroke="#1b232c" strokeWidth="0.6" fill="#0a0e13">
+      <g stroke="#1e2b3a" strokeWidth="0.6" fill="#0c1420">
         <rect x="8" y="86" width="84" height="34" rx="3" />
         <rect x="14" y="78" width="26" height="12" rx="2" />
         <rect x="60" y="76" width="30" height="14" rx="2" />
@@ -267,7 +267,7 @@ function SimulatedRoom({ ir }: { ir: boolean }) {
         <rect x="66" y="72" width="12" height="9" rx="1.5" />
         <rect x="4" y="10" width="92" height="52" rx="2" fill="none" />
       </g>
-      <g stroke="#151c24" strokeWidth="0.4">
+      <g stroke="#182030" strokeWidth="0.4">
         <line x1="0" y1="62" x2="100" y2="62" />
         <line x1="0" y1="120" x2="100" y2="120" />
       </g>

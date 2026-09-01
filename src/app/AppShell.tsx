@@ -100,7 +100,7 @@ function TabBar() {
               navigate('/app/scan')
             }}
             aria-label="Run a deep scan"
-            className="press iris-edge relative -mt-7 grid h-[54px] w-[54px] place-items-center rounded-full border border-line-2 bg-surface-2 text-ink shadow-[0_10px_30px_-12px_rgba(0,0,0,0.9)]"
+            className="press iris-edge relative -mt-7 grid h-[54px] w-[54px] place-items-center rounded-full border border-line-2 bg-surface-2 text-ink shadow-[0_10px_30px_-12px_rgba(27,25,21,0.28)]"
           >
             <Icon name="scan" size={22} />
           </button>

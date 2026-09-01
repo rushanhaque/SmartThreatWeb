@@ -1,43 +1,57 @@
 @import 'tailwindcss';
 
 /* ============================================================================
-   PRIVACYGLASS · DESIGN SYSTEM "APERTURE"
+   PRIVACYGLASS · DESIGN SYSTEM "APERTURE" — DAYLIGHT
    A precision-instrument language for a privacy defence wearable.
-   Dark-only by intent: the product is used in dim rooms, at night, discreetly.
+
+   Light by intent. The palette is deliberately NOT the default SaaS
+   white-and-blue: the ground is warm bone paper (the colour of a lab
+   notebook, never #fff), the ink is a warm charcoal, and the accent triad
+   is drawn from dichroic lens coating — peacock, copper, violet — so the
+   product's own optics supply its brand colour.
    ========================================================================== */
 
 @theme {
-  /* — Surfaces ————————————————————————————————————————————————— */
-  --color-void: #06070a;
-  --color-bg: #08090b;
-  --color-bg-2: #0b0d10;
-  --color-surface: #101317;
-  --color-surface-2: #161a20;
-  --color-surface-3: #1d222a;
+  /* — Surfaces: warm bone paper —————————————————————————————————————————
+     void  = the ground behind everything (deepest)
+     bg    = app canvas
+     bg-2  = recessed wells / inset panels
+     surface..surface-3 = rising elevation. surface-3 is a warm sand tint
+     used for chips and pills so they keep presence on a white card. */
+  --color-void: #E3DED2;
+  --color-bg: #F4F1E9;
+  --color-bg-2: #EBE6DB;
+  --color-surface: #FCFAF6;
+  --color-surface-2: #FFFFFF;
+  --color-surface-3: #E8E2D5;
 
-  /* — Ink ————————————————————————————————————————————————————— */
-  --color-ink: #e9ebee;
-  --color-ink-2: #99a1ac;
-  --color-ink-3: #7a828e;
-  --color-ink-4: #5c646f;
+  /* — Ink: warm charcoal, never pure black ————————————————————————————— */
+  --color-ink: #1B1915;
+  --color-ink-2: #4E4A41;
+  --color-ink-3: #6A6559;
+  --color-ink-4: #938D7E;
 
-  /* — Status: the product's semantic core ————————————————————— */
-  --color-safe: #35c98a;
-  --color-safe-deep: #0f3d2c;
-  --color-caution: #e9a23b;
-  --color-caution-deep: #43310f;
-  --color-threat: #ff5247;
-  --color-threat-deep: #4a1512;
+  /* — Status: the product's semantic core ————————————————————————————
+     Deepened for a light ground so they stay legible as TEXT, not just as
+     fills. The `-deep` tokens are the paired pale wash used behind them. */
+  --color-safe: #12704A;
+  --color-safe-deep: #DDEFE4;
+  --color-caution: #A66A05;
+  --color-caution-deep: #F8ECD1;
+  --color-threat: #C0291D;
+  --color-threat-deep: #FBE1DD;
 
-  /* — Brand: lens-coating iridescence ————————————————————————— */
-  --color-iris-a: #6e63ff;
-  --color-iris-b: #2fa8ff;
-  --color-iris-c: #2be0c4;
+  /* — Brand: dichroic lens coating ————————————————————————————————————
+     iris-b is the primary interactive colour: a deep peacock, chosen over
+     a conventional blue so focus rings and links read as instrumentation. */
+  --color-iris-a: #5538C9;
+  --color-iris-b: #0C6B75;
+  --color-iris-c: #B0501A;
 
-  /* — Lines ——————————————————————————————————————————————————— */
-  --color-line: rgba(255, 255, 255, 0.075);
-  --color-line-2: rgba(255, 255, 255, 0.13);
-  --color-line-3: rgba(255, 255, 255, 0.22);
+  /* — Lines: warm dark alphas on paper ————————————————————————————————— */
+  --color-line: rgba(27, 25, 21, 0.10);
+  --color-line-2: rgba(27, 25, 21, 0.17);
+  --color-line-3: rgba(27, 25, 21, 0.30);
 
   /* — Type ———————————————————————————————————————————————————— */
   --font-sans:
@@ -135,8 +149,8 @@
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--color-iris-b) 32%, transparent);
-    color: #fff;
+    background: color-mix(in srgb, var(--color-iris-b) 22%, transparent);
+    color: var(--color-ink);
   }
 
   :focus-visible {
@@ -215,15 +229,15 @@
   position: relative;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--color-surface) 92%, white 8%) 0%,
-    var(--color-surface) 42%,
-    var(--color-bg-2) 100%
+    var(--color-surface-2) 0%,
+    var(--color-surface) 55%,
+    color-mix(in srgb, var(--color-surface) 80%, var(--color-bg-2)) 100%
   );
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
 }
 
-/* Hairline top-highlight — reads as machined metal catching light */
+/* Hairline top-highlight — reads as a bevelled edge in daylight */
 @utility panel-lit {
   &::before {
     content: '';
@@ -233,8 +247,8 @@
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.14) 22%,
-      rgba(255, 255, 255, 0.14) 78%,
+      rgba(255, 255, 255, 0.72) 22%,
+      rgba(255, 255, 255, 0.72) 78%,
       transparent
     );
     pointer-events: none;
@@ -325,7 +339,7 @@
 }
 .t-neutral {
   --accent: var(--color-iris-b);
-  --accent-deep: #0d2740;
+  --accent-deep: #D4EBE8;
   --accent-soft: color-mix(in srgb, var(--color-iris-b) 14%, transparent);
 }
 
@@ -338,8 +352,8 @@
   inset: 0;
   z-index: 90;
   pointer-events: none;
-  opacity: 0.032;
-  mix-blend-mode: overlay;
+  opacity: 0.055;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 

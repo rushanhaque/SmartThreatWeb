@@ -50,7 +50,7 @@ const BTN_SIZE = {
 }
 
 const BTN_VARIANT: Record<ButtonVariant, string> = {
-  primary: 'bg-ink text-void hover:bg-white active:bg-white',
+  primary: 'bg-ink text-surface-2 hover:bg-ink-2 active:bg-ink-2',
   accent:
     'text-[var(--accent)] bg-[var(--accent-soft)] border border-[color-mix(in_srgb,var(--accent)_34%,transparent)] hover:bg-[color-mix(in_srgb,var(--accent)_20%,transparent)]',
   quiet: 'bg-surface-2 text-ink border border-line hover:bg-surface-3',

@@ -333,7 +333,7 @@ function Footer() {
         aria-hidden
         style={{
           background:
-            'radial-gradient(90% 70% at 50% 100%, rgba(47,168,255,0.12), transparent 65%)',
+            'radial-gradient(90% 70% at 50% 100%, rgba(12,107,117,0.10), transparent 65%)',
         }}
       />
       <div className="relative mx-auto max-w-6xl px-5 py-24 text-center">

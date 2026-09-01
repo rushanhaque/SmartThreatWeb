@@ -99,7 +99,7 @@ function Hero() {
         aria-hidden
         style={{
           background:
-            'radial-gradient(100% 62% at 50% 8%, rgba(47,168,255,0.13), transparent 62%), linear-gradient(180deg, transparent 40%, var(--color-bg) 92%)',
+            'radial-gradient(100% 62% at 50% 8%, rgba(12,107,117,0.12), transparent 62%), linear-gradient(180deg, transparent 40%, var(--color-bg) 92%)',
         }}
       />
 
