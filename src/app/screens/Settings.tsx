@@ -1,4 +1,5 @@
 import { Button, Divider, Label, Panel, PanelHeader, Pill, Segmented, Switch, cx } from '@/components/ui'
+import { gsap, useGsap, revealChildren } from '@/lib/motion'
 import { Icon, type IconName } from '@/components/Icon'
 import { actions, selHw, selPrefs, useSelect } from '@/engine/store'
 import { SCENARIOS } from '@/engine/simulator'
@@ -16,9 +17,20 @@ export default function Settings() {
   const prefs = useSelect(selPrefs)
   const hw    = useSelect(selHw)
 
+  const root = useGsap((_, scope) => {
+    // page title
+    gsap.from(scope.querySelector('.settings-title'), {
+      y: 22, opacity: 0, duration: 0.75, ease: 'expo.out',
+    })
+    // each section staggered on scroll
+    revealChildren(scope, 'section', { stagger: 0.1, y: 22, start: 'top 88%' })
+    // footer note
+    revealChildren(scope, '.settings-footer', { y: 14, start: 'top 95%' })
+  })
+
   return (
-    <div className="pb-8 t-neutral">
-      <div className="px-5 pt-6 pb-4">
+    <div ref={root} className="pb-8 t-neutral">
+      <div className="settings-title px-5 pt-6 pb-4">
         <h1 className="display-3">Settings</h1>
       </div>
 
@@ -149,7 +161,7 @@ export default function Settings() {
         </Panel>
       </section>
 
-      <p className="mt-6 px-6 text-center text-[11.5px] leading-relaxed text-ink-3">
+      <p className="settings-footer mt-6 px-6 text-center text-[11.5px] leading-relaxed text-ink-3">
         PG-1 is a detection aid built as a final-year engineering project. It does not guarantee
         that a space is free of surveillance.
       </p>

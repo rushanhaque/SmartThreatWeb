@@ -8,6 +8,7 @@
 
 import { useMemo, useState } from 'react'
 import { Empty, Label, Panel, Pill, Segmented, cx } from '@/components/ui'
+import { gsap, useGsap, revealChildren } from '@/lib/motion'
 import { Icon, type IconName } from '@/components/Icon'
 import { ProximityField, SignalBars, Sparkline } from '@/components/viz'
 import { selDevices, useSelect } from '@/engine/store'
@@ -54,6 +55,22 @@ export default function Devices() {
   const [view, setView] = useState<'list' | 'field'>('list')
   const [q, setQ] = useState('')
 
+  const root = useGsap((_, scope) => {
+    // summary header
+    gsap.from(scope.querySelectorAll('.devices-header > *'), {
+      y: 22, opacity: 0, stagger: 0.1, duration: 0.75, ease: 'expo.out',
+    })
+    // search + filter chips
+    gsap.from([
+      scope.querySelector('.devices-search'),
+      ...Array.from(scope.querySelectorAll('.filter-chip')),
+    ].filter(Boolean), {
+      y: 18, opacity: 0, stagger: 0.06, duration: 0.7, ease: 'expo.out', delay: 0.1,
+    })
+    // device cards scroll reveal
+    revealChildren(scope, 'li', { stagger: 0.07, y: 20, start: 'top 90%' })
+  })
+
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase()
     return devices
@@ -91,9 +108,9 @@ export default function Devices() {
   )
 
   return (
-    <div className="pb-6">
+    <div ref={root} className="pb-6">
       {/* ── Summary ──────────────────────────────────────────────── */}
-      <div className="flex items-start justify-between gap-4 px-5 pt-6 pb-4">
+      <div className="devices-header flex items-start justify-between gap-4 px-5 pt-6 pb-4">
         <div>
           <h1 className="display-3">{devices.length} radios</h1>
           <p className="mt-1.5 text-[13px] text-ink-3">
@@ -159,7 +176,7 @@ export default function Devices() {
       ) : null}
 
       {/* ── Search ───────────────────────────────────────────────── */}
-      <div className="px-4 pt-1">
+      <div className="devices-search px-4 pt-1">
         <div className="flex items-center gap-2.5 rounded-md border border-line bg-bg-2 px-3.5">
           <Icon name="search" size={16} className="shrink-0 text-ink-4" />
           <input
@@ -184,7 +201,7 @@ export default function Devices() {
             key={f.id}
             onClick={() => setFilter(f.id)}
             className={cx(
-              'press inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12.5px] font-medium',
+              'filter-chip press inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12.5px] font-medium',
               filter === f.id
                 ? 'border-line-3 bg-surface-2 text-ink'
                 : 'border-line text-ink-3 hover:text-ink-2',

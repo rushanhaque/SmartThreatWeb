@@ -9,6 +9,7 @@ import { SCENARIOS } from '@/engine/simulator'
 import type { FusionChannel, Reason } from '@/engine/types'
 import { pct, proximityLabel } from '@/lib/format'
 import { useSpringNumber } from '@/lib/hooks'
+import { gsap, useGsap, revealChildren } from '@/lib/motion'
 
 const CHANNEL_ICON: Record<FusionChannel, IconName> = {
   camera: 'camera',
@@ -32,10 +33,23 @@ export function Shield() {
   const last    = frames[frames.length - 1]
   const rfTrail = useMemo(() => frames.slice(-40).map((f) => f.rfDbm), [frames])
 
+  const root = useGsap((_, scope) => {
+    // hero text + button entrance (ring has its own CSS anim)
+    gsap.from(scope.querySelectorAll('.shield-hero-body'), {
+      y: 24, opacity: 0, stagger: 0.12, duration: 0.75, ease: 'expo.out', delay: 0.18,
+    })
+    // panels below hero — stagger reveal on scroll
+    scope.querySelectorAll<HTMLElement>('section:not(.shield-hero)').forEach((sec) => {
+      revealChildren(sec, ':scope > *', { stagger: 0.09, y: 20 })
+    })
+    // scenario cards
+    revealChildren(scope, '.scenario-card', { stagger: 0.07, y: 18, start: 'top 85%' })
+  })
+
   return (
-    <div className="pb-6">
+    <div ref={root} className="pb-6">
       {/* ── Primary readout ──────────────────────────────────────── */}
-      <section className="flex flex-col items-center px-5 pt-7 pb-6">
+      <section className="shield-hero flex flex-col items-center px-5 pt-7 pb-6">
         <ApertureRing score={verdict.score} klass={verdict.klass} scanning={prefs.scanning}>
           <div className="readout text-[62px] font-semibold leading-none tracking-[-0.05em] text-ink">
             {Math.round(shown)}
@@ -59,13 +73,13 @@ export function Shield() {
           <Label className="mt-2">CONF {pct(verdict.confidence)}</Label>
         </ApertureRing>
 
-        <p className="mt-5 max-w-[30ch] text-center text-[14px] leading-relaxed text-ink-2">
+        <p className="shield-hero-body mt-5 max-w-[30ch] text-center text-[14px] leading-relaxed text-ink-2">
           {meta.verb}
         </p>
 
         {/* Scan toggle */}
         <Button
-          className="mt-4"
+          className="shield-hero-body mt-4"
           variant={prefs.scanning ? 'quiet' : 'accent'}
           icon={prefs.scanning ? 'pause' : 'play'}
           onClick={() => actions.toggleScanning()}
@@ -163,7 +177,7 @@ export function Shield() {
                 key={s.id}
                 onClick={() => actions.setScenario(s.id)}
                 className={cx(
-                  'press w-[210px] rounded-md border p-3.5 text-left',
+                  'scenario-card press w-[210px] rounded-md border p-3.5 text-left',
                   active
                     ? 'border-[color-mix(in_srgb,var(--accent)_40%,transparent)] bg-[var(--accent-soft)]'
                     : 'border-line bg-surface/60 hover:border-line-2',

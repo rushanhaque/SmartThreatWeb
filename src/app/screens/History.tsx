@@ -8,6 +8,7 @@
 
 import { useMemo, useState } from 'react'
 import { Empty, Label, Panel, PanelHeader, Pill, Segmented, cx } from '@/components/ui'
+import { gsap, useGsap, revealChildren } from '@/lib/motion'
 import { Icon } from '@/components/Icon'
 import { ThreatRibbon } from '@/components/viz'
 import { selIncidents, selSessions, useSelect } from '@/engine/store'
@@ -27,6 +28,21 @@ export default function History() {
   const sessions = useSelect(selSessions)
   const incidents = useSelect(selIncidents)
   const [tab, setTab] = useState<Tab>('sessions')
+
+  const root = useGsap((_, scope) => {
+    // header entrance
+    gsap.from(scope.querySelectorAll('.history-header > *'), {
+      y: 22, opacity: 0, stagger: 0.1, duration: 0.75, ease: 'expo.out',
+    })
+    // ribbon panel + segmented control
+    gsap.from(scope.querySelectorAll('.history-ribbon, .history-tabs'), {
+      y: 18, opacity: 0, stagger: 0.1, duration: 0.75, ease: 'expo.out', delay: 0.12,
+    })
+    // session/incident cards
+    revealChildren(scope, '.history-card', { stagger: 0.07, y: 18, start: 'top 88%' })
+    // privacy panel
+    revealChildren(scope, '.history-footer', { y: 16, start: 'top 92%' })
+  })
   // A 24-hour ribbon built from the recorded peaks, bucketed hourly.
   const ribbon = useMemo(() => {
     const now = Date.now()
@@ -50,8 +66,8 @@ export default function History() {
   }, [sessions])
 
   return (
-    <div className="pb-6">
-      <div className="px-5 pt-6 pb-4">
+    <div ref={root} className="pb-6">
+      <div className="history-header px-5 pt-6 pb-4">
         <h1 className="display-3">History</h1>
         <p className="mt-1.5 text-[13px] text-ink-3">
           {sessions.length} saved scans · {incidents.length} incidents · stored on this phone only
@@ -59,7 +75,7 @@ export default function History() {
       </div>
 
       {/* ── 24 h ribbon ──────────────────────────────────────────── */}
-      <div className="px-4">
+      <div className="history-ribbon px-4">
         <Panel className="t-neutral pt-3.5 pb-4">
           <PanelHeader title="LAST 24 HOURS" hint="Hourly peak threat score" />
           <ThreatRibbon points={ribbon} />
@@ -70,7 +86,7 @@ export default function History() {
         </Panel>
       </div>
 
-      <div className="px-4 pt-4 pb-3">
+      <div className="history-tabs px-4 pt-4 pb-3">
         <Segmented
           value={tab}
           onChange={setTab}
@@ -99,7 +115,7 @@ export default function History() {
                   {items.map((s) => (
                     <div
                       key={s.id}
-                      className={cx(TONE[s.klass], 'panel w-full p-4')}
+                      className={cx(TONE[s.klass], 'history-card panel w-full p-4')}
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -134,7 +150,7 @@ export default function History() {
           {incidents.map((inc) => (
             <div
               key={inc.id}
-              className={cx(TONE[inc.klass], 'panel flex w-full items-center gap-3 p-4')}
+              className={cx(TONE[inc.klass], 'history-card panel flex w-full items-center gap-3 p-4')}
             >
               <div
                 className="grid h-10 w-10 shrink-0 place-items-center rounded-sm border text-[var(--accent)]"
@@ -160,7 +176,7 @@ export default function History() {
         </div>
       )}
 
-      <div className="mt-6 px-4">
+      <div className="history-footer mt-6 px-4">
         <Panel className="t-neutral p-4">
           <div className="flex items-start gap-3">
             <Icon name="lock" size={17} className="mt-0.5 shrink-0 text-ink-3" />
