@@ -7,7 +7,6 @@
    ========================================================================== */
 
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Empty, Label, Panel, Pill, Segmented, cx } from '@/components/ui'
 import { Icon, type IconName } from '@/components/Icon'
 import { ProximityField, SignalBars, Sparkline } from '@/components/viz'
@@ -54,7 +53,6 @@ export default function Devices() {
   const [filter, setFilter] = useState<Filter>('all')
   const [view, setView] = useState<'list' | 'field'>('list')
   const [q, setQ] = useState('')
-  const navigate = useNavigate()
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase()
@@ -209,7 +207,7 @@ export default function Devices() {
         <ul className="list-virtualish px-4">
           {filtered.map((d) => (
             <li key={d.id} className="mb-2">
-              <DeviceCard device={d} onClick={() => navigate(`/app/devices/${d.id}`)} />
+              <DeviceCard device={d} onClick={() => {}} />
             </li>
           ))}
         </ul>

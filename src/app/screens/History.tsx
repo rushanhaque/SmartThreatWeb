@@ -7,7 +7,6 @@
    ========================================================================== */
 
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Empty, Label, Panel, PanelHeader, Pill, Segmented, cx } from '@/components/ui'
 import { Icon } from '@/components/Icon'
 import { ThreatRibbon } from '@/components/viz'
@@ -28,8 +27,6 @@ export default function History() {
   const sessions = useSelect(selSessions)
   const incidents = useSelect(selIncidents)
   const [tab, setTab] = useState<Tab>('sessions')
-  const navigate = useNavigate()
-
   // A 24-hour ribbon built from the recorded peaks, bucketed hourly.
   const ribbon = useMemo(() => {
     const now = Date.now()
@@ -100,10 +97,9 @@ export default function History() {
                 </div>
                 <div className="space-y-2">
                   {items.map((s) => (
-                    <button
+                    <div
                       key={s.id}
-                      onClick={() => navigate(`/app/history/${s.id}`)}
-                      className={cx(TONE[s.klass], 'press panel w-full p-4 text-left')}
+                      className={cx(TONE[s.klass], 'panel w-full p-4')}
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -117,7 +113,7 @@ export default function History() {
                           <span className="readout text-[20px] font-semibold text-[var(--accent)]">
                             {s.peakScore}
                           </span>
-                          <Icon name="chevron-right" size={15} className="text-ink-4" />
+    
                         </div>
                       </div>
                       <p className="mt-2.5 text-[12.5px] leading-relaxed text-ink-3">
@@ -126,7 +122,7 @@ export default function History() {
                       <div className="mt-3 flex items-center gap-2">
                         <Pill tone="accent">{CLASS_META[s.klass].label}</Pill>
                       </div>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </section>
@@ -136,10 +132,9 @@ export default function History() {
       ) : (
         <div className="space-y-2 px-4">
           {incidents.map((inc) => (
-            <button
+            <div
               key={inc.id}
-              onClick={() => navigate(`/app/history/${inc.id}`)}
-              className={cx(TONE[inc.klass], 'press panel flex w-full items-center gap-3 p-4 text-left')}
+              className={cx(TONE[inc.klass], 'panel flex w-full items-center gap-3 p-4')}
             >
               <div
                 className="grid h-10 w-10 shrink-0 place-items-center rounded-sm border text-[var(--accent)]"
@@ -160,7 +155,7 @@ export default function History() {
               <span className="readout shrink-0 text-[18px] font-semibold text-[var(--accent)]">
                 {inc.peakScore}
               </span>
-            </button>
+            </div>
           ))}
         </div>
       )}
